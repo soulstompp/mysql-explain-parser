@@ -1,0 +1,97 @@
+{
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "907.97"
+    },
+    "nested_loop": [
+      {
+        "table": {
+          "table_name": "Country",
+          "access_type": "ALL",
+          "possible_keys": [
+            "PRIMARY"
+          ],
+          "rows_examined_per_scan": 239,
+          "rows_produced_per_join": 34,
+          "filtered": "14.29",
+          "cost_info": {
+            "read_cost": "46.97",
+            "eval_cost": "6.83",
+            "prefix_cost": "53.80",
+            "data_read_per_join": "8K"
+          },
+          "used_columns": [
+            "Code",
+            "Continent"
+          ],
+          "attached_condition": "(`world`.`Country`.`Continent` = 'Asia')"
+        }
+      },
+      {
+        "table": {
+          "table_name": "City",
+          "access_type": "ref",
+          "possible_keys": [
+            "CountryCode"
+          ],
+          "key": "CountryCode",
+          "used_key_parts": [
+            "CountryCode"
+          ],
+          "key_length": "3",
+          "ref": [
+            "world.Country.Code"
+          ],
+          "rows_examined_per_scan": 18,
+          "rows_produced_per_join": 61,
+          "filtered": "10.00",
+          "cost_info": {
+            "read_cost": "616.34",
+            "eval_cost": "12.33",
+            "prefix_cost": "793.40",
+            "data_read_per_join": "4K"
+          },
+          "used_columns": [
+            "Name",
+            "CountryCode",
+            "District"
+          ],
+          "attached_condition": "(`world`.`City`.`District` = 'Georgia')"
+        }
+      },
+      {
+        "table": {
+          "table_name": "CountryLanguage",
+          "access_type": "ref",
+          "possible_keys": [
+            "PRIMARY",
+            "CountryCode"
+          ],
+          "key": "CountryCode",
+          "used_key_parts": [
+            "CountryCode"
+          ],
+          "key_length": "3",
+          "ref": [
+            "world.Country.Code"
+          ],
+          "rows_examined_per_scan": 4,
+          "rows_produced_per_join": 260,
+          "filtered": "100.00",
+          "using_index": true,
+          "cost_info": {
+            "read_cost": "62.51",
+            "eval_cost": "52.06",
+            "prefix_cost": "907.97",
+            "data_read_per_join": "10K"
+          },
+          "used_columns": [
+            "CountryCode",
+            "Language"
+          ]
+        }
+      }
+    ]
+  }
+}

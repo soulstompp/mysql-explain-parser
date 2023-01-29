@@ -1,0 +1,140 @@
+{
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "3073970.40"
+    },
+    "grouping_operation": {
+      "using_temporary_table": true,
+      "using_filesort": true,
+      "cost_info": {
+        "sort_cost": "2557022.00"
+      },
+      "table": {
+        "table_name": "salaries",
+        "access_type": "ALL",
+        "rows_examined_per_scan": 2557022,
+        "rows_produced_per_join": 2557022,
+        "filtered": "100.00",
+        "cost_info": {
+          "read_cost": "5544.00",
+          "eval_cost": "511404.40",
+          "prefix_cost": "516948.40",
+          "data_read_per_join": "39M"
+        },
+        "used_columns": [
+          "emp_no",
+          "salary",
+          "from_date"
+        ]
+      },
+      "having_subqueries": [
+        {
+          "dependent": false,
+          "cacheable": true,
+          "query_block": {
+            "select_id": 2,
+            "cost_info": {
+              "query_cost": "771970.25"
+            },
+            "table": {
+              "table_name": "t",
+              "access_type": "ALL",
+              "rows_examined_per_scan": 3087841,
+              "rows_produced_per_join": 3087841,
+              "filtered": "100.00",
+              "cost_info": {
+                "read_cost": "154402.05",
+                "eval_cost": "617568.20",
+                "prefix_cost": "771970.25",
+                "data_read_per_join": "94M"
+              },
+              "used_columns": [
+                "dept_no",
+                "s"
+              ],
+              "materialized_from_subquery": {
+                "using_temporary_table": true,
+                "dependent": false,
+                "cacheable": true,
+                "query_block": {
+                  "select_id": 3,
+                  "cost_info": {
+                    "query_cost": "1019140.27"
+                  },
+                  "grouping_operation": {
+                    "using_filesort": false,
+                    "nested_loop": [
+                      {
+                        "table": {
+                          "table_name": "dept_emp",
+                          "access_type": "index",
+                          "possible_keys": [
+                            "PRIMARY",
+                            "emp_no",
+                            "dept_no"
+                          ],
+                          "key": "dept_no",
+                          "used_key_parts": [
+                            "dept_no"
+                          ],
+                          "key_length": "4",
+                          "rows_examined_per_scan": 331570,
+                          "rows_produced_per_join": 331570,
+                          "filtered": "100.00",
+                          "using_index": true,
+                          "cost_info": {
+                            "read_cost": "737.00",
+                            "eval_cost": "66314.00",
+                            "prefix_cost": "67051.00",
+                            "data_read_per_join": "5M"
+                          },
+                          "used_columns": [
+                            "emp_no",
+                            "dept_no"
+                          ]
+                        }
+                      },
+                      {
+                        "table": {
+                          "table_name": "salaries",
+                          "access_type": "ref",
+                          "possible_keys": [
+                            "PRIMARY",
+                            "emp_no"
+                          ],
+                          "key": "PRIMARY",
+                          "used_key_parts": [
+                            "emp_no"
+                          ],
+                          "key_length": "4",
+                          "ref": [
+                            "employees.dept_emp.emp_no"
+                          ],
+                          "rows_examined_per_scan": 9,
+                          "rows_produced_per_join": 3087841,
+                          "filtered": "100.00",
+                          "cost_info": {
+                            "read_cost": "334520.92",
+                            "eval_cost": "617568.35",
+                            "prefix_cost": "1019140.27",
+                            "data_read_per_join": "47M"
+                          },
+                          "used_columns": [
+                            "emp_no",
+                            "salary",
+                            "from_date"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

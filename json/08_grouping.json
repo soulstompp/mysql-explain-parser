@@ -1,0 +1,39 @@
+{
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "14.40"
+    },
+    "grouping_operation": {
+      "using_filesort": false,
+      "table": {
+        "table_name": "dept_emp",
+        "access_type": "range",
+        "possible_keys": [
+          "PRIMARY",
+          "emp_no",
+          "dept_no"
+        ],
+        "key": "dept_no",
+        "used_key_parts": [
+          "dept_no"
+        ],
+        "key_length": "4",
+        "rows_examined_per_scan": 9,
+        "rows_produced_per_join": 9,
+        "filtered": "100.00",
+        "using_index_for_group_by": true,
+        "cost_info": {
+          "read_cost": "12.60",
+          "eval_cost": "1.80",
+          "prefix_cost": "14.40",
+          "data_read_per_join": "144"
+        },
+        "used_columns": [
+          "emp_no",
+          "dept_no"
+        ]
+      }
+    }
+  }
+}

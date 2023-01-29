@@ -1,0 +1,75 @@
+{
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "2.80"
+    },
+    "table": {
+      "table_name": "departments",
+      "access_type": "index",
+      "key": "dept_name",
+      "used_key_parts": [
+        "dept_name"
+      ],
+      "key_length": "42",
+      "rows_examined_per_scan": 9,
+      "rows_produced_per_join": 9,
+      "filtered": "100.00",
+      "using_index": true,
+      "cost_info": {
+        "read_cost": "1.00",
+        "eval_cost": "1.80",
+        "prefix_cost": "2.80",
+        "data_read_per_join": "432"
+      },
+      "used_columns": [
+        "dept_no",
+        "dept_name"
+      ],
+      "attached_condition": "<in_optimizer>(`employees`.`departments`.`dept_no`,`employees`.`departments`.`dept_no` in ( <materialize> (/* select#2 */ select `employees`.`dept_manager`.`dept_no` from `employees`.`dept_manager` where (`employees`.`dept_manager`.`to_date` is not null) ), <primary_index_lookup>(`employees`.`departments`.`dept_no` in <temporary table> on <auto_key> where ((`employees`.`departments`.`dept_no` = `materialized-subquery`.`dept_no`)))))",
+      "attached_subqueries": [
+        {
+          "table": {
+            "table_name": "<materialized_subquery>",
+            "access_type": "eq_ref",
+            "key": "<auto_key>",
+            "key_length": "4",
+            "rows_examined_per_scan": 1,
+            "materialized_from_subquery": {
+              "using_temporary_table": true,
+              "dependent": true,
+              "cacheable": false,
+              "query_block": {
+                "select_id": 2,
+                "cost_info": {
+                  "query_cost": "5.80"
+                },
+                "table": {
+                  "table_name": "dept_manager",
+                  "access_type": "ALL",
+                  "possible_keys": [
+                    "dept_no"
+                  ],
+                  "rows_examined_per_scan": 24,
+                  "rows_produced_per_join": 21,
+                  "filtered": "90.00",
+                  "cost_info": {
+                    "read_cost": "1.48",
+                    "eval_cost": "4.32",
+                    "prefix_cost": "5.80",
+                    "data_read_per_join": "345"
+                  },
+                  "used_columns": [
+                    "dept_no",
+                    "to_date"
+                  ],
+                  "attached_condition": "(`employees`.`dept_manager`.`to_date` is not null)"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

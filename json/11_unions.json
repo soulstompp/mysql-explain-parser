@@ -1,0 +1,201 @@
+{
+  "query_block": {
+    "union_result": {
+      "using_temporary_table": true,
+      "table_name": "<union1,4>",
+      "access_type": "ALL",
+      "query_specifications": [
+        {
+          "dependent": false,
+          "cacheable": true,
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "921684.48"
+            },
+            "nested_loop": [
+              {
+                "table": {
+                  "table_name": "employees",
+                  "access_type": "ALL",
+                  "possible_keys": [
+                    "PRIMARY"
+                  ],
+                  "rows_examined_per_scan": 299778,
+                  "rows_produced_per_join": 299778,
+                  "filtered": "100.00",
+                  "cost_info": {
+                    "read_cost": "929.00",
+                    "eval_cost": "59955.60",
+                    "prefix_cost": "60884.60",
+                    "data_read_per_join": "13M"
+                  },
+                  "used_columns": [
+                    "emp_no",
+                    "last_name"
+                  ]
+                }
+              },
+              {
+                "table": {
+                  "table_name": "salaries",
+                  "access_type": "ref",
+                  "possible_keys": [
+                    "PRIMARY",
+                    "emp_no"
+                  ],
+                  "key": "PRIMARY",
+                  "used_key_parts": [
+                    "emp_no"
+                  ],
+                  "key_length": "4",
+                  "ref": [
+                    "employees.employees.emp_no"
+                  ],
+                  "rows_examined_per_scan": 9,
+                  "rows_produced_per_join": 299778,
+                  "filtered": "33.33",
+                  "first_match": "employees",
+                  "cost_info": {
+                    "read_cost": "302445.97",
+                    "eval_cost": "59955.60",
+                    "prefix_cost": "921684.48",
+                    "data_read_per_join": "4M"
+                  },
+                  "used_columns": [
+                    "emp_no",
+                    "salary"
+                  ],
+                  "attached_condition": "(`employees`.`salaries`.`salary` < (/* select#3 */ select avg(`employees`.`salaries`.`salary`) from `employees`.`salaries`))",
+                  "attached_subqueries": [
+                    {
+                      "dependent": false,
+                      "cacheable": true,
+                      "query_block": {
+                        "select_id": 3,
+                        "cost_info": {
+                          "query_cost": "516948.40"
+                        },
+                        "table": {
+                          "table_name": "salaries",
+                          "access_type": "ALL",
+                          "rows_examined_per_scan": 2557022,
+                          "rows_produced_per_join": 2557022,
+                          "filtered": "100.00",
+                          "cost_info": {
+                            "read_cost": "5544.00",
+                            "eval_cost": "511404.40",
+                            "prefix_cost": "516948.40",
+                            "data_read_per_join": "39M"
+                          },
+                          "used_columns": [
+                            "salary"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "dependent": false,
+          "cacheable": true,
+          "query_block": {
+            "select_id": 4,
+            "cost_info": {
+              "query_cost": "921684.48"
+            },
+            "nested_loop": [
+              {
+                "table": {
+                  "table_name": "employees",
+                  "access_type": "ALL",
+                  "possible_keys": [
+                    "PRIMARY"
+                  ],
+                  "rows_examined_per_scan": 299778,
+                  "rows_produced_per_join": 299778,
+                  "filtered": "100.00",
+                  "cost_info": {
+                    "read_cost": "929.00",
+                    "eval_cost": "59955.60",
+                    "prefix_cost": "60884.60",
+                    "data_read_per_join": "13M"
+                  },
+                  "used_columns": [
+                    "emp_no",
+                    "last_name"
+                  ]
+                }
+              },
+              {
+                "table": {
+                  "table_name": "salaries",
+                  "access_type": "ref",
+                  "possible_keys": [
+                    "PRIMARY",
+                    "emp_no"
+                  ],
+                  "key": "PRIMARY",
+                  "used_key_parts": [
+                    "emp_no"
+                  ],
+                  "key_length": "4",
+                  "ref": [
+                    "employees.employees.emp_no"
+                  ],
+                  "rows_examined_per_scan": 9,
+                  "rows_produced_per_join": 299778,
+                  "filtered": "33.33",
+                  "first_match": "employees",
+                  "cost_info": {
+                    "read_cost": "302445.97",
+                    "eval_cost": "59955.60",
+                    "prefix_cost": "921684.48",
+                    "data_read_per_join": "4M"
+                  },
+                  "used_columns": [
+                    "emp_no",
+                    "salary"
+                  ],
+                  "attached_condition": "(`employees`.`salaries`.`salary` >= (/* select#6 */ select avg(`employees`.`salaries`.`salary`) from `employees`.`salaries`))",
+                  "attached_subqueries": [
+                    {
+                      "dependent": false,
+                      "cacheable": true,
+                      "query_block": {
+                        "select_id": 6,
+                        "cost_info": {
+                          "query_cost": "516948.40"
+                        },
+                        "table": {
+                          "table_name": "salaries",
+                          "access_type": "ALL",
+                          "rows_examined_per_scan": 2557022,
+                          "rows_produced_per_join": 2557022,
+                          "filtered": "100.00",
+                          "cost_info": {
+                            "read_cost": "5544.00",
+                            "eval_cost": "511404.40",
+                            "prefix_cost": "516948.40",
+                            "data_read_per_join": "39M"
+                          },
+                          "used_columns": [
+                            "salary"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

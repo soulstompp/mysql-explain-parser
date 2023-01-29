@@ -1,0 +1,39 @@
+{
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "60833.60"
+    },
+    "ordering_operation": {
+      "using_filesort": true,
+      "table": {
+        "table_name": "employees",
+        "access_type": "ALL",
+        "rows_examined_per_scan": 299843,
+        "rows_produced_per_join": 299843,
+        "filtered": "100.00",
+        "cost_info": {
+          "read_cost": "865.00",
+          "eval_cost": "59968.60",
+          "prefix_cost": "60833.60",
+          "data_read_per_join": "13M"
+        },
+        "used_columns": [
+          "emp_no",
+          "first_name",
+          "last_name"
+        ]
+      },
+      "order_by_subqueries": [
+        {
+          "dependent": true,
+          "cacheable": false,
+          "query_block": {
+            "select_id": 2,
+            "message": "No tables used"
+          }
+        }
+      ]
+    }
+  }
+}
